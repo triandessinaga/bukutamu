@@ -1,0 +1,23 @@
+-buat folder baru
+-jalankan npm init
+-jalankan  
+npm i express express-session body-parser req-flash mysql ejs
+-buat folder sesuai kode yang didalam
+-import database (qrbukutamu.sql) ke mysql
+-pelajari folder perfolder. 
+-jika semua folder sudah sesuai jalankan perintah:
+npm run start
+
+-buka browser ketikkan 
+http://localhost:3000/
+
+lakukan pendaftaran
+login
+
+atau bisa test dengan database yang sudah ada
+
+email: roma@gmail.com
+password: roma@1234
+
+
+

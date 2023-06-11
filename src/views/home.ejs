@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <style>
+        
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: left;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  p {
+    margin-top: 20px;
+  }
+  
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+#qrcode-container {
+    max-width: 400px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, select {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">
+            <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Diskominfo
+          </a>
+       
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="<%= url %>admin">Admin</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<%= url %>">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= url %>profile">Profile</a>
+                </li>
+                         
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= userName %>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="<%= url %>profile">Profil</a>
+                        <a class="dropdown-item" href="<%= url %>login/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <section class="mt-4 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center">Selamat datang di dinas Kominfo Pakpak Barat</h3>
+                        </div>
+
+                        <div class="card-body">
+
+      <h3 class="text-center">QRCode Buku Tamu</h3>
+    <div id="form-container">
+        <!-- <h4>Form Tamu</h4> -->
+                <form id="tamu-form">
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" class="form-control" required>
+                    
+                    <label for="organisasi">Organisasi/Instansi/Masyarakat:</label>
+                    <input type="text" id="organisasi" name="organisasi" class="form-control" required>
+                    
+                    <label for="tujuan">Tujuan:</label>
+                    <select id="tujuan" name="tujuan" class="form-control" required>
+                        <!-- Nama-nama instansi diambil dari tabel kategori -->
+                        <option value="1">Instansi 1</option>
+                        <option value="2">Instansi 2</option>
+                        <option value="3">Instansi 3</option>
+                        <!-- ... -->
+                    </select>
+                    
+                    <label for="keperluan">Keperluan:</label>
+                    <input type="text" id="keperluan" name="keperluan" class="form-control" required>
+                    
+                    <label for="phone">No. Telepon/HP:</label>
+                    <input type="tel" id="phone" name="phone"  class="form-control" required>
+                    
+                    <button type="button" class="btn btn-success" onclick="saveData()">Save to Generate QR Code</button>
+                </form>
+            </div>
+            <div id="qrcode-container" style="display: none;">
+                <h2>QR Code</h2>
+                <div id="qrcode"></div>
+            </div>
+                          
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <style>
+        body,html {
+            font-family: Quicksand,sans-serif !important;
+            height:100%;
+            padding-top: 2rem;
+        }
+    </style>
+
+<script>
+    // Fungsi untuk menyimpan data tamu dan menampilkan QR Code
+function saveData() {
+    const nama = document.getElementById('nama').value;
+    const organisasi = document.getElementById('organisasi').value;
+    const tujuan = document.getElementById('tujuan').value;
+    const keperluan = document.getElementById('keperluan').value;
+    const phone = document.getElementById('phone').value;
+
+    const tamuData = {
+        nama,
+        organisasi,
+        tujuan,
+        keperluan,
+        phone
+    };
+
+    // Kirim data tamu ke server (misalnya menggunakan AJAX atau Fetch API)
+    // Setelah berhasil, tampilkan QR Code
+    const qrCodeContainer = document.getElementById('qrcode-container');
+    const qrCodeElement = document.getElementById('qrcode');
+
+    // Buat URL data JSON untuk QR Code
+    const jsonData = JSON.stringify(tamuData);
+   
+    const qrCodeDataUrl = `data:text/plain;charset=utf-8,${encodeURIComponent(jsonData)}`;
+
+    // Tampilkan QR Code
+    qrCodeElement.innerHTML = '';
+    const imgElement = document.createElement('img');
+    imgElement.src = `https://api.qrserver.com/v1/create-qr-code/?data=${qrCodeDataUrl}&size=200x200`;
+    qrCodeElement.appendChild(imgElement);
+
+    // Tampilkan kontainer QR Code
+    qrCodeContainer.style.display = 'block';
+}
+
+</script>
+</body>
+</html>
